@@ -1,0 +1,1844 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SovendusSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
+import Combine
+import Compression
+import CoreFoundation
+import CoreGraphics
+import CoreText
+import CryptoKit
+import Foundation
+import QuartzCore
+import Swift
+import SwiftUI
+import UIKit
+import WebKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import _WebKit_SwiftUI
+import zlib
+public enum ErrorType : Swift.String, Swift.Codable {
+  case unknown
+  case notFound
+  case exception
+  case cors
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct ErrorRequest : Swift.Codable {
+  public let sdkPlatform: Swift.String
+  public let sdkVersion: Swift.String
+  public let trafficSourceNumber: Swift.Int?
+  public let trafficMediumNumber: Swift.Int?
+  public let type: SovendusSDK.ErrorType
+  public let message: Swift.String
+  public let actions: Swift.String?
+  public let additionalData: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(trafficSourceNumber: Swift.Int? = nil, trafficMediumNumber: Swift.Int? = nil, type: SovendusSDK.ErrorType, message: Swift.String, actions: Swift.String? = nil, additionalData: Swift.String? = nil)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ConsumerData {
+  public enum Salutation : Swift.String {
+    case mr
+    case mrs
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(salutation: SovendusSDK.ConsumerData.Salutation? = nil, firstName: Swift.String? = nil, lastName: Swift.String? = nil, email: Swift.String? = nil, phone: Swift.String? = nil, yearOfBirth: Swift.Int? = nil, dateOfBirth: Swift.String? = nil, street: Swift.String? = nil, streetNumber: Swift.String? = nil, zipcode: Swift.String? = nil, city: Swift.String? = nil, country: Swift.String? = nil)
+  #endif
+}
+public struct OrderData {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(sessionId: Swift.String? = nil, orderId: Swift.String? = nil, orderCurrency: Swift.String? = nil, usedCouponCode: Swift.String? = nil, orderValue: Swift.Double? = nil)
+  #endif
+}
+public enum SovendusState {
+  case loading
+  case success
+  case error(any Swift.Error)
+}
+public typealias OnSovendusStateChanged = (SovendusSDK.SovendusState) -> Swift.Void
+public typealias OnSovendusLinkOpened = (Foundation.URL) -> Swift.Void
+public struct SovendusConfig {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil)
+  #endif
+}
+@_hasMissingDesignatedInitializers public class Asset : Swift.Codable {
+  required public init(from decoder: any Swift.Decoder) throws
+  final public let id: Swift.String
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension SovendusSDK.Asset : @unchecked Swift.Sendable {
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers final public class ImageAsset : SovendusSDK.Asset {
+  final public let name: Swift.String
+  final public let directory: Swift.String
+  final public let width: Swift.Double
+  final public let height: Swift.Double
+  override final public func encode(to encoder: any Swift.Encoder) throws
+  @objc deinit
+}
+extension SovendusSDK.ImageAsset : @unchecked Swift.Sendable {
+}
+public enum DotLottieError : Swift.Error {
+  case noDataLoaded
+  case assetNotFound(name: Swift.String, bundle: Foundation.Bundle?)
+  case loadingFromAssetNotSupported
+  @available(*, deprecated, message: "Unused")
+  case invalidFileFormat
+  @available(*, deprecated, message: "Unused")
+  case invalidData
+  @available(*, deprecated, message: "Unused")
+  case animationNotAvailable
+}
+public enum LayerType : Swift.Int, Swift.Codable {
+  case precomp
+  case solid
+  case image
+  case null
+  case shape
+  case text
+  case unknown
+  public init(from decoder: any Swift.Decoder) throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum MatteType : Swift.Int, Swift.Codable {
+  case none
+  case add
+  case invert
+  case unknown
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public enum BlendMode : Swift.Int, Swift.Codable {
+  case normal
+  case multiply
+  case screen
+  case overlay
+  case darken
+  case lighten
+  case colorDodge
+  case colorBurn
+  case hardLight
+  case softLight
+  case difference
+  case exclusion
+  case hue
+  case saturation
+  case color
+  case luminosity
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+infix operator +| : DefaultPrecedence
+infix operator +- : DefaultPrecedence
+public typealias LottieCompletionBlock = (_ completed: Swift.Bool) -> Swift.Void
+public enum LottieAnimationSource : Swift.Sendable {
+  case lottieAnimation(SovendusSDK.LottieAnimation)
+  case dotLottieFile(SovendusSDK.DotLottieFile)
+}
+extension SovendusSDK.LottieAnimation {
+  final public var animationSource: SovendusSDK.LottieAnimationSource {
+    get
+  }
+}
+extension SovendusSDK.DotLottieFile {
+  final public var animationSource: SovendusSDK.LottieAnimationSource {
+    get
+  }
+}
+extension SovendusSDK.LottieColor : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension SovendusSDK.LottieVector1D : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct LottieVector2D : Swift.Codable, Swift.Hashable, Swift.Sendable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: SovendusSDK.LottieVector2D, b: SovendusSDK.LottieVector2D) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SovendusSDK.LottieVector3D : Swift.Codable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+extension SovendusSDK.LottieVector3D {
+  public var pointValue: CoreFoundation.CGPoint {
+    get
+  }
+  public var sizeValue: CoreFoundation.CGSize {
+    get
+  }
+}
+public enum CoordinateSpace : Swift.Int, Swift.Codable, Swift.Sendable {
+  case type2d
+  case type3d
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+final public class LottieAnimation : Swift.Codable, Swift.Sendable {
+  required public init(from decoder: any Swift.Decoder) throws
+  public init(dictionary: [Swift.String : Any]) throws
+  final public let startFrame: SovendusSDK.AnimationFrameTime
+  final public let endFrame: SovendusSDK.AnimationFrameTime
+  final public let framerate: Swift.Double
+  final public var markerNames: [Swift.String] {
+    get
+  }
+  @objc deinit
+  final public func encode(to encoder: any Swift.Encoder) throws
+}
+extension SovendusSDK.LottieAnimation {
+  public typealias DownloadClosure = (SovendusSDK.LottieAnimation?) -> Swift.Void
+  final public var duration: Foundation.TimeInterval {
+    get
+  }
+  final public var bounds: CoreFoundation.CGRect {
+    get
+  }
+  final public var size: CoreFoundation.CGSize {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func named(_ name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared) -> SovendusSDK.LottieAnimation?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func filepath(_ filepath: Swift.String, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared) -> SovendusSDK.LottieAnimation?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func asset(_ name: Swift.String, bundle: Foundation.Bundle = Bundle.main, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared) -> SovendusSDK.LottieAnimation?
+  #endif
+  public static func from(data: Foundation.Data, strategy: SovendusSDK.DecodingStrategy = LottieConfiguration.shared.decodingStrategy) throws -> SovendusSDK.LottieAnimation
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func loadedFrom(url: Foundation.URL, session: Foundation.URLSession = .shared, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared) async -> SovendusSDK.LottieAnimation?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public static func loadedFrom(url: Foundation.URL, session: Foundation.URLSession = .shared, closure: @escaping SovendusSDK.LottieAnimation.DownloadClosure, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared) -> Foundation.URLSessionDataTask?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func progressTime(forMarker named: Swift.String) -> SovendusSDK.AnimationProgressTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func frameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func durationFrameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  final public func progressTime(forFrame frameTime: SovendusSDK.AnimationFrameTime, clamped: Swift.Bool = true) -> SovendusSDK.AnimationProgressTime
+  final public func frameTime(forProgress progressTime: SovendusSDK.AnimationProgressTime) -> SovendusSDK.AnimationFrameTime
+  final public func time(forFrame frameTime: SovendusSDK.AnimationFrameTime) -> Foundation.TimeInterval
+  final public func frameTime(forTime time: Foundation.TimeInterval) -> SovendusSDK.AnimationFrameTime
+}
+extension Foundation.Bundle : @unchecked Swift.Sendable {
+}
+@objc @_hasMissingDesignatedInitializers public class LottieAnimationLayer : QuartzCore.CALayer {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(animation: SovendusSDK.LottieAnimation?, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, textProvider: any SovendusSDK.AnimationKeypathTextProvider = DefaultTextProvider(), fontProvider: any SovendusSDK.AnimationFontProvider = DefaultFontProvider(), configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(dotLottie: SovendusSDK.DotLottieFile?, animationId: Swift.String? = nil, textProvider: any SovendusSDK.AnimationKeypathTextProvider = DefaultTextProvider(), fontProvider: any SovendusSDK.AnimationFontProvider = DefaultFontProvider(), configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  #endif
+  public init(configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(fromProgress: SovendusSDK.AnimationProgressTime? = nil, toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(fromFrame: SovendusSDK.AnimationFrameTime? = nil, toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(fromMarker: Swift.String? = nil, toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(marker: Swift.String, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(markers: [Swift.String], completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  open func stop()
+  open func pause()
+  open func pause(at state: SovendusSDK.LottiePlaybackMode.PausedState)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "setPlaybackMode(_:completion:)", message: "Will be removed in a future major release.")
+  open func play(_ playbackMode: SovendusSDK.LottiePlaybackMode, animationCompletionHandler: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func setPlaybackMode(_ playbackMode: SovendusSDK.LottiePlaybackMode, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  open func play(_ playbackMode: SovendusSDK.LottiePlaybackMode.PlaybackMode, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  public var currentPlaybackMode: SovendusSDK.LottiePlaybackMode? {
+    get
+  }
+  public var valueProviders: [SovendusSDK.AnimationKeypath : any SovendusSDK.AnyValueProvider] {
+    get
+  }
+  public var animationLayerDidLoad: ((_ animationLayer: SovendusSDK.LottieAnimationLayer, _ renderingEngine: SovendusSDK.RenderingEngineOption) -> Swift.Void)?
+  public var configuration: SovendusSDK.LottieConfiguration {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var animationLayer: QuartzCore.CALayer? {
+    get
+  }
+  #endif
+  public var screenScale: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var backgroundBehavior: SovendusSDK.LottieBackgroundBehavior {
+    get
+    set
+  }
+  public var animation: SovendusSDK.LottieAnimation? {
+    get
+    set
+  }
+  public var animationLoaded: ((_ animationLayer: SovendusSDK.LottieAnimationLayer, _ animation: SovendusSDK.LottieAnimation) -> Swift.Void)? {
+    get
+    set
+  }
+  public var imageProvider: any SovendusSDK.AnimationImageProvider {
+    get
+    set
+  }
+  public var textProvider: any SovendusSDK.AnimationKeypathTextProvider {
+    get
+    set
+  }
+  public var fontProvider: any SovendusSDK.AnimationFontProvider {
+    get
+    set
+  }
+  public var maskAnimationToBounds: Swift.Bool {
+    get
+    set
+  }
+  public var isAnimationPlaying: Swift.Bool {
+    get
+  }
+  public var loopMode: SovendusSDK.LottieLoopMode {
+    get
+    set
+  }
+  public var shouldRasterizeWhenIdle: Swift.Bool {
+    get
+    set
+  }
+  public var currentProgress: SovendusSDK.AnimationProgressTime {
+    get
+    set
+  }
+  public var currentTime: Foundation.TimeInterval {
+    get
+    set
+  }
+  public var currentFrame: SovendusSDK.AnimationFrameTime {
+    get
+    set
+  }
+  public var realtimeAnimationFrame: SovendusSDK.AnimationFrameTime {
+    get
+  }
+  public var realtimeAnimationProgress: SovendusSDK.AnimationProgressTime {
+    get
+  }
+  public var animationSpeed: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  public var respectAnimationFrameRate: Swift.Bool {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var currentRenderingEngine: SovendusSDK.RenderingEngine? {
+    get
+  }
+  #endif
+  public var mainThreadRenderingEngineShouldForceDisplayUpdateOnEachFrame: Swift.Bool {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func loadAnimation(_ animationId: Swift.String? = nil, from dotLottieFile: SovendusSDK.DotLottieFile)
+  #endif
+  public func loadAnimation(atIndex index: Swift.Int, from dotLottieFile: SovendusSDK.DotLottieFile)
+  public func reloadImages()
+  public func forceDisplayUpdate()
+  public func setValueProvider(_ valueProvider: any SovendusSDK.AnyValueProvider, keypath: SovendusSDK.AnimationKeypath)
+  public func removeValueProvider(for keypath: SovendusSDK.AnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getValue(for keypath: SovendusSDK.AnimationKeypath, atFrame: SovendusSDK.AnimationFrameTime?) -> Any?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func getOriginalValue(for keypath: SovendusSDK.AnimationKeypath, atFrame: SovendusSDK.AnimationFrameTime?) -> Any?
+  #endif
+  public func logHierarchyKeypaths()
+  public func allHierarchyKeypaths() -> [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func convert(_ rect: CoreFoundation.CGRect, toLayerAt keypath: SovendusSDK.AnimationKeypath?) -> CoreFoundation.CGRect?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func convert(_ point: CoreFoundation.CGPoint, toLayerAt keypath: SovendusSDK.AnimationKeypath?) -> CoreFoundation.CGPoint?
+  #endif
+  public func setNodeIsEnabled(isEnabled: Swift.Bool, keypath: SovendusSDK.AnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func progressTime(forMarker named: Swift.String) -> SovendusSDK.AnimationProgressTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func frameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func durationFrameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  public func updateAnimationForBackgroundState()
+  public func updateAnimationForForegroundState(wasWaitingToPlayAnimation: Swift.Bool)
+  @objc deinit
+}
+public enum LottieBackgroundBehavior {
+  case stop
+  case pause
+  case pauseAndRestore
+  case forceFinish
+  case continuePlaying
+  public static func `default`(for renderingEngine: SovendusSDK.RenderingEngine) -> SovendusSDK.LottieBackgroundBehavior
+  public static func == (a: SovendusSDK.LottieBackgroundBehavior, b: SovendusSDK.LottieBackgroundBehavior) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum LottieLoopMode : Swift.Hashable {
+  case playOnce
+  case loop
+  case autoReverse
+  case `repeat`(Swift.Float)
+  case repeatBackwards(Swift.Float)
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SovendusSDK.LottieLoopMode : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.LottieLoopMode, rhs: SovendusSDK.LottieLoopMode) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers @IBDesignable @_Concurrency.MainActor @preconcurrency open class LottieAnimationView : SovendusSDK.LottieAnimationViewBase {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(animation: SovendusSDK.LottieAnimation?, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, textProvider: any SovendusSDK.AnimationKeypathTextProvider = DefaultTextProvider(), fontProvider: any SovendusSDK.AnimationFontProvider = DefaultFontProvider(), configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(dotLottie: SovendusSDK.DotLottieFile?, animationId: Swift.String? = nil, textProvider: any SovendusSDK.AnimationKeypathTextProvider = DefaultTextProvider(), fontProvider: any SovendusSDK.AnimationFontProvider = DefaultFontProvider(), configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public init(configuration: SovendusSDK.LottieConfiguration = .shared, logger: SovendusSDK.LottieLogger = .shared)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(_ mode: SovendusSDK.LottiePlaybackMode.PlaybackMode, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(fromProgress: SovendusSDK.AnimationProgressTime? = nil, toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(fromFrame: SovendusSDK.AnimationFrameTime? = nil, toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(fromMarker: Swift.String? = nil, toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(marker: Swift.String, loopMode: SovendusSDK.LottieLoopMode? = nil, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func play(markers: [Swift.String], completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency open func stop()
+  @_Concurrency.MainActor @preconcurrency open func pause()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(*, deprecated, renamed: "setPlaybackMode(_:completion:)", message: "Will be removed in a future major release.")
+  @_Concurrency.MainActor @preconcurrency open func play(_ playbackMode: SovendusSDK.LottiePlaybackMode, animationCompletionHandler: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency open func setPlaybackMode(_ playbackMode: SovendusSDK.LottiePlaybackMode, completion: SovendusSDK.LottieCompletionBlock? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var animateLayoutChangesWithCurrentCoreAnimationContext: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var configuration: SovendusSDK.LottieConfiguration {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var valueProviders: [SovendusSDK.AnimationKeypath : any SovendusSDK.AnyValueProvider] {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var backgroundBehavior: SovendusSDK.LottieBackgroundBehavior {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public var animation: SovendusSDK.LottieAnimation? {
+    get
+    set
+  }
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var animationLoaded: ((_ animationView: SovendusSDK.LottieAnimationView, _ animation: SovendusSDK.LottieAnimation) -> Swift.Void)? {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var imageProvider: any SovendusSDK.AnimationImageProvider {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var textProvider: any SovendusSDK.AnimationKeypathTextProvider {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var fontProvider: any SovendusSDK.AnimationFontProvider {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var maskAnimationToBounds: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var isAnimationPlaying: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var isAnimationQueued: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var loopMode: SovendusSDK.LottieLoopMode {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var shouldRasterizeWhenIdle: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var currentProgress: SovendusSDK.AnimationProgressTime {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var currentTime: Foundation.TimeInterval {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var currentFrame: SovendusSDK.AnimationFrameTime {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var realtimeAnimationFrame: SovendusSDK.AnimationFrameTime {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var realtimeAnimationProgress: SovendusSDK.AnimationProgressTime {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public var animationSpeed: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var respectAnimationFrameRate: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var viewportFrame: CoreFoundation.CGRect? {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var intrinsicContentSize: CoreFoundation.CGSize {
+    @objc get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public var currentRenderingEngine: SovendusSDK.RenderingEngine? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public var currentPlaybackMode: SovendusSDK.LottiePlaybackMode? {
+    get
+  }
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var mainThreadRenderingEngineShouldForceDisplayUpdateOnEachFrame: Swift.Bool {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func loadAnimation(_ animationId: Swift.String? = nil, from dotLottieFile: SovendusSDK.DotLottieFile)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func loadAnimation(atIndex index: Swift.Int, from dotLottieFile: SovendusSDK.DotLottieFile)
+  @_Concurrency.MainActor @preconcurrency public func reloadImages()
+  @_Concurrency.MainActor @preconcurrency public func forceDisplayUpdate()
+  @_Concurrency.MainActor @preconcurrency public func setValueProvider(_ valueProvider: any SovendusSDK.AnyValueProvider, keypath: SovendusSDK.AnimationKeypath)
+  @_Concurrency.MainActor @preconcurrency public func removeValueProvider(for keypath: SovendusSDK.AnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func getValue(for keypath: SovendusSDK.AnimationKeypath, atFrame: SovendusSDK.AnimationFrameTime?) -> Any?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func getOriginalValue(for keypath: SovendusSDK.AnimationKeypath, atFrame: SovendusSDK.AnimationFrameTime?) -> Any?
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func logHierarchyKeypaths()
+  @_Concurrency.MainActor @preconcurrency public func allHierarchyKeypaths() -> [Swift.String]
+  @_Concurrency.MainActor @preconcurrency public func addSubview(_ subview: SovendusSDK.AnimationSubview, forLayerAt keypath: SovendusSDK.AnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func convert(_ rect: CoreFoundation.CGRect, toLayerAt keypath: SovendusSDK.AnimationKeypath?) -> CoreFoundation.CGRect?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func convert(_ point: CoreFoundation.CGPoint, toLayerAt keypath: SovendusSDK.AnimationKeypath?) -> CoreFoundation.CGPoint?
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func setNodeIsEnabled(isEnabled: Swift.Bool, keypath: SovendusSDK.AnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func progressTime(forMarker named: Swift.String) -> SovendusSDK.AnimationProgressTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func frameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func durationFrameTime(forMarker named: Swift.String) -> SovendusSDK.AnimationFrameTime?
+  #endif
+  @objc deinit
+}
+extension SovendusSDK.LottieAnimationView {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(filePath: Swift.String, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(url: Foundation.URL, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, session: Foundation.URLSession = .shared, closure: @escaping SovendusSDK.LottieAnimationView.DownloadClosure, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(asset name: Swift.String, bundle: Foundation.Bundle = Bundle.main, imageProvider: (any SovendusSDK.AnimationImageProvider)? = nil, animationCache: (any SovendusSDK.AnimationCacheProvider)? = LottieAnimationCache.shared, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(dotLottieName name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, animationId: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, configuration: SovendusSDK.LottieConfiguration = .shared, completion: ((SovendusSDK.LottieAnimationView, (any Swift.Error)?) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(dotLottieFilePath filePath: Swift.String, animationId: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, configuration: SovendusSDK.LottieConfiguration = .shared, completion: ((SovendusSDK.LottieAnimationView, (any Swift.Error)?) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(dotLottieUrl url: Foundation.URL, animationId: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, configuration: SovendusSDK.LottieConfiguration = .shared, session: Foundation.URLSession = .shared, completion: ((SovendusSDK.LottieAnimationView, (any Swift.Error)?) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency convenience public init(dotLottieAsset name: Swift.String, bundle: Foundation.Bundle = Bundle.main, animationId: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, configuration: SovendusSDK.LottieConfiguration = .shared, completion: ((SovendusSDK.LottieAnimationView, (any Swift.Error)?) -> Swift.Void)? = nil)
+  #endif
+  public typealias DownloadClosure = ((any Swift.Error)?) -> Swift.Void
+}
+public enum LottiePlaybackMode : Swift.Hashable {
+  case paused(at: SovendusSDK.LottiePlaybackMode.PausedState)
+  case playing(_: SovendusSDK.LottiePlaybackMode.PlaybackMode)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.paused(at:)", message: "Will be removed in a future major release.")
+  case progress(_: SovendusSDK.AnimationProgressTime)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.paused(at:)", message: "Will be removed in a future major release.")
+  case frame(_: SovendusSDK.AnimationFrameTime)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.paused(at:)", message: "Will be removed in a future major release.")
+  case time(_: Foundation.TimeInterval)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.paused(at:)", message: "Will be removed in a future major release.")
+  case pause
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  case fromProgress(_: SovendusSDK.AnimationProgressTime?, toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  case fromFrame(_: SovendusSDK.AnimationFrameTime?, toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  case fromMarker(_: Swift.String?, toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  case marker(_: Swift.String, loopMode: SovendusSDK.LottieLoopMode)
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  case markers(_: [Swift.String])
+  public enum PausedState : Swift.Hashable {
+    case currentFrame
+    case progress(_: SovendusSDK.AnimationProgressTime)
+    case frame(_: SovendusSDK.AnimationFrameTime)
+    case time(_: Foundation.TimeInterval)
+    case marker(_: Swift.String, position: SovendusSDK.LottieMarkerPosition = .start)
+    public static func == (a: SovendusSDK.LottiePlaybackMode.PausedState, b: SovendusSDK.LottiePlaybackMode.PausedState) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum PlaybackMode : Swift.Hashable {
+    case fromProgress(_: SovendusSDK.AnimationProgressTime?, toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode)
+    case fromFrame(_: SovendusSDK.AnimationFrameTime?, toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode)
+    case fromMarker(_: Swift.String?, toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode)
+    case marker(_: Swift.String, loopMode: SovendusSDK.LottieLoopMode)
+    case markers(_: [Swift.String])
+    public static func == (a: SovendusSDK.LottiePlaybackMode.PlaybackMode, b: SovendusSDK.LottiePlaybackMode.PlaybackMode) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public static func == (a: SovendusSDK.LottiePlaybackMode, b: SovendusSDK.LottiePlaybackMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SovendusSDK.LottiePlaybackMode {
+  public static var paused: SovendusSDK.LottiePlaybackMode {
+    get
+  }
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  public static func toProgress(_ toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  public static func toFrame(_ toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode
+  @available(*, deprecated, renamed: "LottiePlaybackMode.playing(_:)", message: "Will be removed in a future major release.")
+  public static func toMarker(_ toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode
+}
+extension SovendusSDK.LottiePlaybackMode.PlaybackMode {
+  public static func toProgress(_ toProgress: SovendusSDK.AnimationProgressTime, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode.PlaybackMode
+  public static func toFrame(_ toFrame: SovendusSDK.AnimationFrameTime, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode.PlaybackMode
+  public static func toMarker(_ toMarker: Swift.String, playEndMarkerFrame: Swift.Bool = true, loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottiePlaybackMode.PlaybackMode
+}
+public enum LottieMarkerPosition : Swift.Hashable {
+  case start
+  case end
+  public static func == (a: SovendusSDK.LottieMarkerPosition, b: SovendusSDK.LottieMarkerPosition) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct LottieView<Placeholder> where Placeholder : SwiftUICore.View {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(animation: SovendusSDK.LottieAnimation?) where Placeholder == SwiftUICore.EmptyView
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(dotLottieFile: SovendusSDK.DotLottieFile?) where Placeholder == SwiftUICore.EmptyView
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadAnimation: @escaping () async throws -> SovendusSDK.LottieAnimation?) where Placeholder == SwiftUICore.EmptyView
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadAnimation: @escaping () async throws -> SovendusSDK.LottieAnimation?, @SwiftUICore.ViewBuilder placeholder: @escaping () -> Placeholder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadDotLottieFile: @escaping () async throws -> SovendusSDK.DotLottieFile?) where Placeholder == SwiftUICore.EmptyView
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadDotLottieFile: @escaping () async throws -> SovendusSDK.DotLottieFile?, @SwiftUICore.ViewBuilder placeholder: @escaping () -> Placeholder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadAnimation: @escaping () async throws -> SovendusSDK.LottieAnimationSource?) where Placeholder == SwiftUICore.EmptyView
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(_ loadAnimation: @escaping () async throws -> SovendusSDK.LottieAnimationSource?, @SwiftUICore.ViewBuilder placeholder: @escaping () -> Placeholder)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func configure<Property>(_ property: Swift.ReferenceWritableKeyPath<SovendusSDK.LottieAnimationView, Property>, to value: Property) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func configure<Property>(_ property: Swift.ReferenceWritableKeyPath<SovendusSDK.LottieAnimationView, Property>, to value: Property) -> SovendusSDK.LottieView<Placeholder> where Property : Swift.Equatable
+  @_Concurrency.MainActor @preconcurrency public func configure(_ configure: @escaping (SovendusSDK.LottieAnimationView) -> Swift.Void) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func resizable() -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func intrinsicSize() -> SovendusSDK.LottieView<Placeholder>
+  @available(*, deprecated, renamed: "playing()", message: "Will be removed in a future major release.")
+  @_Concurrency.MainActor @preconcurrency public func play() -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func looping() -> SovendusSDK.LottieView<Placeholder>
+  @available(*, deprecated, renamed: "playing(_:)", message: "Will be removed in a future major release.")
+  @_Concurrency.MainActor @preconcurrency public func play(loopMode: SovendusSDK.LottieLoopMode = .playOnce) -> SovendusSDK.LottieView<Placeholder>
+  @available(*, deprecated, renamed: "playbackMode(_:)", message: "Will be removed in a future major release.")
+  @_Concurrency.MainActor @preconcurrency public func play(_ playbackMode: SovendusSDK.LottiePlaybackMode) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func playing(_ mode: SovendusSDK.LottiePlaybackMode.PlaybackMode) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func playing(loopMode: SovendusSDK.LottieLoopMode) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func playing() -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func paused(at state: SovendusSDK.LottiePlaybackMode.PausedState = .currentFrame) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func playbackMode(_ playbackMode: SovendusSDK.LottiePlaybackMode) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func animationSpeed(_ animationSpeed: Swift.Double) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func animationDidLoad(_ animationDidLoad: @escaping (SovendusSDK.LottieAnimationSource) -> Swift.Void) -> SovendusSDK.LottieView<Placeholder>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func animationDidFinish(_ animationCompletionHandler: SovendusSDK.LottieCompletionBlock?) -> SovendusSDK.LottieView<Placeholder>
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func backgroundBehavior(_ value: SovendusSDK.LottieBackgroundBehavior) -> SovendusSDK.LottieView<Placeholder>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func accessibilityLabel(_ accessibilityLabel: Swift.String?) -> SovendusSDK.LottieView<Placeholder>
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func configuration(_ configuration: SovendusSDK.LottieConfiguration) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func logger(_ logger: SovendusSDK.LottieLogger) -> SovendusSDK.LottieView<Placeholder>
+  @_Concurrency.MainActor @preconcurrency public func imageProvider<ImageProvider>(_ imageProvider: ImageProvider) -> SovendusSDK.LottieView<Placeholder> where ImageProvider : SovendusSDK.AnimationImageProvider, ImageProvider : Swift.Equatable
+  @_Concurrency.MainActor @preconcurrency public func textProvider<TextProvider>(_ textProvider: TextProvider) -> SovendusSDK.LottieView<Placeholder> where TextProvider : SovendusSDK.AnimationKeypathTextProvider, TextProvider : Swift.Equatable
+  @_Concurrency.MainActor @preconcurrency public func fontProvider<FontProvider>(_ fontProvider: FontProvider) -> SovendusSDK.LottieView<Placeholder> where FontProvider : SovendusSDK.AnimationFontProvider, FontProvider : Swift.Equatable
+  @_Concurrency.MainActor @preconcurrency public func valueProvider<ValueProvider>(_ valueProvider: ValueProvider, for keypath: SovendusSDK.AnimationKeypath) -> SovendusSDK.LottieView<Placeholder> where ValueProvider : SovendusSDK.AnyValueProvider, ValueProvider : Swift.Equatable
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func currentProgress(_ currentProgress: SovendusSDK.AnimationProgressTime?) -> SovendusSDK.LottieView<Placeholder>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func currentFrame(_ currentFrame: SovendusSDK.AnimationFrameTime?) -> SovendusSDK.LottieView<Placeholder>
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public func currentTime(_ currentTime: Foundation.TimeInterval?) -> SovendusSDK.LottieView<Placeholder>
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func reloadAnimationTrigger(_ value: some Equatable, showPlaceholder: Swift.Bool = true) -> SovendusSDK.LottieView<Placeholder>
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(iOS 15.0, tvOS 15.0, macOS 12.0, *)
+  @_Concurrency.MainActor @preconcurrency public func getRealtimeAnimationProgress(_ realtimeAnimationProgress: SwiftUICore.Binding<SovendusSDK.AnimationProgressTime>?) -> some SwiftUICore.View
+  
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @available(iOS 15.0, tvOS 15.0, macOS 12.0, *)
+  @_Concurrency.MainActor @preconcurrency public func getRealtimeAnimationFrame(_ realtimeAnimationFrame: SwiftUICore.Binding<SovendusSDK.AnimationFrameTime>?) -> some SwiftUICore.View
+  
+  #endif
+  @_Concurrency.MainActor @preconcurrency public func dotLottieConfigurationComponents(_ dotLottieConfigurationComponents: SovendusSDK.DotLottieConfigurationComponents) -> SovendusSDK.LottieView<Placeholder>
+  public typealias Body = @_opaqueReturnTypeOf("$s11SovendusSDK10LottieViewV4bodyQrvp", 0) __<Placeholder>
+}
+public protocol AnimationCacheProvider : AnyObject, Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func animation(forKey: Swift.String) -> SovendusSDK.LottieAnimation?
+  #endif
+  func setAnimation(_ animation: SovendusSDK.LottieAnimation, forKey: Swift.String)
+  func clearCache()
+}
+public class DefaultAnimationCache : SovendusSDK.AnimationCacheProvider {
+  public init()
+  public static let sharedCache: SovendusSDK.DefaultAnimationCache
+  public var cacheSize: Swift.Int {
+    get
+    set
+  }
+  public func clearCache()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func animation(forKey key: Swift.String) -> SovendusSDK.LottieAnimation?
+  #endif
+  public func setAnimation(_ animation: SovendusSDK.LottieAnimation, forKey key: Swift.String)
+  @objc deinit
+}
+extension SovendusSDK.DefaultAnimationCache : @unchecked Swift.Sendable {
+}
+@available(*, deprecated, message: "Use DefaultAnimationCache instead, which is thread-safe and automatically responds to memory pressure.")
+public typealias LRUAnimationCache = SovendusSDK.DefaultAnimationCache
+public enum LottieAnimationCache {
+  public static var shared: (any SovendusSDK.AnimationCacheProvider)?
+}
+public enum DecodingStrategy : Swift.Hashable {
+  case legacyCodable
+  case dictionaryBased
+  public static func == (a: SovendusSDK.DecodingStrategy, b: SovendusSDK.DecodingStrategy) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LottieConfiguration : Swift.Hashable {
+  public init(renderingEngine: SovendusSDK.RenderingEngineOption = .automatic, decodingStrategy: SovendusSDK.DecodingStrategy = .dictionaryBased, colorSpace: CoreGraphics.CGColorSpace = CGColorSpaceCreateDeviceRGB(), reducedMotionOption: SovendusSDK.ReducedMotionOption = .systemReducedMotionToggle)
+  public static var shared: SovendusSDK.LottieConfiguration
+  public var renderingEngine: SovendusSDK.RenderingEngineOption
+  public var decodingStrategy: SovendusSDK.DecodingStrategy
+  public var reducedMotionOption: SovendusSDK.ReducedMotionOption
+  public var colorSpace: CoreGraphics.CGColorSpace
+  public static func == (a: SovendusSDK.LottieConfiguration, b: SovendusSDK.LottieConfiguration) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ReducedMotionOption {
+  case specific(SovendusSDK.ReducedMotionMode)
+  case dynamic(any SovendusSDK.ReducedMotionOptionProvider, dataID: Swift.AnyHashable)
+}
+extension SovendusSDK.ReducedMotionOption {
+  public static var standardMotion: SovendusSDK.ReducedMotionOption {
+    get
+  }
+  public static var reducedMotion: SovendusSDK.ReducedMotionOption {
+    get
+  }
+  public static var systemReducedMotionToggle: SovendusSDK.ReducedMotionOption {
+    get
+  }
+}
+extension SovendusSDK.ReducedMotionOption {
+  public var currentReducedMotionMode: SovendusSDK.ReducedMotionMode {
+    get
+  }
+}
+extension SovendusSDK.ReducedMotionOption : Swift.Hashable {
+  public static func == (lhs: SovendusSDK.ReducedMotionOption, rhs: SovendusSDK.ReducedMotionOption) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ReducedMotionMode : Swift.Hashable {
+  case standardMotion
+  case reducedMotion
+  public static func == (a: SovendusSDK.ReducedMotionMode, b: SovendusSDK.ReducedMotionMode) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol ReducedMotionOptionProvider {
+  var currentReducedMotionMode: SovendusSDK.ReducedMotionMode { get }
+}
+public struct SystemReducedMotionOptionProvider : SovendusSDK.ReducedMotionOptionProvider {
+  public init()
+  public var currentReducedMotionMode: SovendusSDK.ReducedMotionMode {
+    get
+  }
+}
+public enum RenderingEngineOption : Swift.Hashable {
+  case automatic
+  case specific(SovendusSDK.RenderingEngine)
+  public static var mainThread: SovendusSDK.RenderingEngineOption {
+    get
+  }
+  public static var coreAnimation: SovendusSDK.RenderingEngineOption {
+    get
+  }
+}
+public enum RenderingEngine : Swift.Hashable {
+  case mainThread
+  case coreAnimation
+}
+extension SovendusSDK.RenderingEngineOption : Swift.RawRepresentable, Swift.CustomStringConvertible {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public var rawValue: Swift.String {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension SovendusSDK.RenderingEngine : Swift.RawRepresentable, Swift.CustomStringConvertible {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public var rawValue: Swift.String {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class AnimatedButton : SovendusSDK.AnimatedControl {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency override public init(animation: SovendusSDK.LottieAnimation?, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func beginTracking(_ touch: UIKit.UITouch, with event: UIKit.UIEvent?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func endTracking(_ touch: UIKit.UITouch?, with event: UIKit.UIEvent?)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var performAction: (() -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var accessibilityTraits: UIKit.UIAccessibilityTraits {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency public func setPlayRange(fromProgress: SovendusSDK.AnimationProgressTime, toProgress: SovendusSDK.AnimationProgressTime, event: SovendusSDK.LottieControlEvent)
+  @_Concurrency.MainActor @preconcurrency public func setPlayRange(fromMarker fromName: Swift.String, toMarker toName: Swift.String, event: SovendusSDK.LottieControlEvent)
+  @objc deinit
+}
+@objc @_Concurrency.MainActor @preconcurrency open class AnimatedControl : SovendusSDK.LottieControlType {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(animation: SovendusSDK.LottieAnimation?, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var isEnabled: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var isSelected: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var isHighlighted: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open var intrinsicContentSize: CoreFoundation.CGSize {
+    @objc get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func beginTracking(_ touch: UIKit.UITouch, with event: UIKit.UIEvent?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func continueTracking(_ touch: UIKit.UITouch, with event: UIKit.UIEvent?) -> Swift.Bool
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func endTracking(_ touch: UIKit.UITouch?, with event: UIKit.UIEvent?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func cancelTracking(with event: UIKit.UIEvent?)
+  #endif
+  @_Concurrency.MainActor @preconcurrency open func animationDidSet()
+  @_Concurrency.MainActor @preconcurrency final public let animationView: SovendusSDK.LottieAnimationView
+  @_Concurrency.MainActor @preconcurrency public var animation: SovendusSDK.LottieAnimation? {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public var animationSpeed: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public func setLayer(named: Swift.String, forState: SovendusSDK.LottieControlState)
+  @_Concurrency.MainActor @preconcurrency public func setValueProvider(_ valueProvider: any SovendusSDK.AnyValueProvider, keypath: SovendusSDK.AnimationKeypath)
+  @_Concurrency.MainActor @preconcurrency public func removeValueProvider(for keypath: SovendusSDK.AnimationKeypath)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class AnimatedSwitch : SovendusSDK.AnimatedControl {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency override public init(animation: SovendusSDK.LottieAnimation?, configuration: SovendusSDK.LottieConfiguration = .shared)
+  #endif
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  #endif
+  @_Concurrency.MainActor @preconcurrency override open func animationDidSet()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func endTracking(_ touch: UIKit.UITouch?, with event: UIKit.UIEvent?)
+  #endif
+  public enum CancelBehavior {
+    case reverse
+    case none
+    public static func == (a: SovendusSDK.AnimatedSwitch.CancelBehavior, b: SovendusSDK.AnimatedSwitch.CancelBehavior) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  @_Concurrency.MainActor @preconcurrency public var cancelBehavior: SovendusSDK.AnimatedSwitch.CancelBehavior
+  @_Concurrency.MainActor @preconcurrency public var animateUpdateWhenChangingAnimation: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var stateUpdated: ((_ isOn: Swift.Bool) -> Swift.Void)?
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var accessibilityTraits: UIKit.UIAccessibilityTraits {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency public var isOn: Swift.Bool {
+    get
+    set
+  }
+  @_Concurrency.MainActor @preconcurrency public func setIsOn(_ isOn: Swift.Bool, animated: Swift.Bool, shouldFireHaptics: Swift.Bool = true)
+  @_Concurrency.MainActor @preconcurrency public func setProgressForState(fromProgress: SovendusSDK.AnimationProgressTime, toProgress: SovendusSDK.AnimationProgressTime, forOnState: Swift.Bool)
+  @objc deinit
+}
+@_Concurrency.MainActor @preconcurrency public struct LottieButton {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(animation: SovendusSDK.LottieAnimation?, action: @escaping () -> Swift.Void)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func configure(_ configure: @escaping (SovendusSDK.AnimatedButton) -> Swift.Void) -> SovendusSDK.LottieButton
+  @_Concurrency.MainActor @preconcurrency public func configuration(_ configuration: SovendusSDK.LottieConfiguration) -> SovendusSDK.LottieButton
+  @_Concurrency.MainActor @preconcurrency public func animate(fromProgress: SovendusSDK.AnimationProgressTime, toProgress: SovendusSDK.AnimationProgressTime, on event: SovendusSDK.LottieControlEvent) -> SovendusSDK.LottieButton
+  @_Concurrency.MainActor @preconcurrency public func animate(fromMarker: Swift.String, toMarker: Swift.String, on event: SovendusSDK.LottieControlEvent) -> SovendusSDK.LottieButton
+  @_Concurrency.MainActor @preconcurrency public func valueProvider<ValueProvider>(_ valueProvider: ValueProvider, for keypath: SovendusSDK.AnimationKeypath) -> SovendusSDK.LottieButton where ValueProvider : SovendusSDK.AnyValueProvider, ValueProvider : Swift.Equatable
+  public typealias Body = @_opaqueReturnTypeOf("$s11SovendusSDK12LottieButtonV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct LottieSwitch {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(animation: SovendusSDK.LottieAnimation?)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func configure(_ configure: @escaping (SovendusSDK.AnimatedSwitch) -> Swift.Void) -> SovendusSDK.LottieSwitch
+  @_Concurrency.MainActor @preconcurrency public func configuration(_ configuration: SovendusSDK.LottieConfiguration) -> SovendusSDK.LottieSwitch
+  @_Concurrency.MainActor @preconcurrency public func isOn(_ binding: SwiftUICore.Binding<Swift.Bool>) -> SovendusSDK.LottieSwitch
+  @_Concurrency.MainActor @preconcurrency public func onAnimation(fromProgress onStartProgress: SovendusSDK.AnimationProgressTime, toProgress onEndProgress: SovendusSDK.AnimationProgressTime) -> SovendusSDK.LottieSwitch
+  @_Concurrency.MainActor @preconcurrency public func offAnimation(fromProgress offStartProgress: SovendusSDK.AnimationProgressTime, toProgress offEndProgress: SovendusSDK.AnimationProgressTime) -> SovendusSDK.LottieSwitch
+  @_Concurrency.MainActor @preconcurrency public func valueProvider<ValueProvider>(_ valueProvider: ValueProvider, for keypath: SovendusSDK.AnimationKeypath) -> SovendusSDK.LottieSwitch where ValueProvider : SovendusSDK.AnyValueProvider, ValueProvider : Swift.Equatable
+  public typealias Body = @_opaqueReturnTypeOf("$s11SovendusSDK12LottieSwitchV4bodyQrvp", 0) __
+}
+public typealias LottieControlType = UIKit.UIControl
+public typealias LottieControlState = UIKit.UIControl.State
+public typealias LottieControlEvent = UIKit.UIControl.Event
+public class DotLottieCache : SovendusSDK.DotLottieCacheProvider {
+  public init()
+  public static let sharedCache: SovendusSDK.DotLottieCache
+  public var cacheSize: Swift.Int {
+    get
+    set
+  }
+  public func clearCache()
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func file(forKey key: Swift.String) -> SovendusSDK.DotLottieFile?
+  #endif
+  public func setFile(_ lottie: SovendusSDK.DotLottieFile, forKey key: Swift.String)
+  @objc deinit
+}
+extension SovendusSDK.DotLottieCache : @unchecked Swift.Sendable {
+}
+public protocol DotLottieCacheProvider : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func file(forKey: Swift.String) -> SovendusSDK.DotLottieFile?
+  #endif
+  func setFile(_ lottie: SovendusSDK.DotLottieFile, forKey: Swift.String)
+  func clearCache()
+}
+public struct DotLottieConfiguration {
+  public var id: Swift.String
+  public var loopMode: SovendusSDK.LottieLoopMode
+  public var speed: Swift.Double
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var imageProvider: (any SovendusSDK.AnimationImageProvider)? {
+    get
+  }
+  #endif
+}
+public struct DotLottieConfigurationComponents : Swift.OptionSet {
+  public init(rawValue: Swift.Int)
+  public static let imageProvider: SovendusSDK.DotLottieConfigurationComponents
+  public static let loopMode: SovendusSDK.DotLottieConfigurationComponents
+  public static let animationSpeed: SovendusSDK.DotLottieConfigurationComponents
+  public static let all: SovendusSDK.DotLottieConfigurationComponents
+  public static let none: SovendusSDK.DotLottieConfigurationComponents
+  public let rawValue: Swift.Int
+  public typealias ArrayLiteralElement = SovendusSDK.DotLottieConfigurationComponents
+  public typealias Element = SovendusSDK.DotLottieConfigurationComponents
+  public typealias RawValue = Swift.Int
+}
+@_hasMissingDesignatedInitializers final public class DotLottieFile {
+  public struct Animation {
+    public let animation: SovendusSDK.LottieAnimation
+    public let configuration: SovendusSDK.DotLottieConfiguration
+  }
+  final public var animations: [SovendusSDK.DotLottieFile.Animation] {
+    get
+  }
+  @objc deinit
+}
+extension SovendusSDK.DotLottieFile : @unchecked Swift.Sendable {
+}
+extension SovendusSDK.DotLottieFile {
+  public enum SynchronouslyBlockingCurrentThread {
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func loadedFrom(filepath: Swift.String, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) -> Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func named(_ name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) -> Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
+    public static func loadedFrom(data: Foundation.Data, filename: Swift.String) -> Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>
+    #endif
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func named(_ name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) async throws -> SovendusSDK.DotLottieFile
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func named(_ name: Swift.String, bundle: Foundation.Bundle = Bundle.main, subdirectory: Swift.String? = nil, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, dispatchQueue: Dispatch.DispatchQueue = .dotLottie, handleResult: @escaping (Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func loadedFrom(filepath: Swift.String, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) async throws -> SovendusSDK.DotLottieFile
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func loadedFrom(filepath: Swift.String, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, dispatchQueue: Dispatch.DispatchQueue = .dotLottie, handleResult: @escaping (Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func asset(named name: Swift.String, bundle: Foundation.Bundle = Bundle.main, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) async throws -> SovendusSDK.DotLottieFile
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func asset(named name: Swift.String, bundle: Foundation.Bundle = Bundle.main, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, dispatchQueue: Dispatch.DispatchQueue = .dotLottie, handleResult: @escaping (Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func loadedFrom(url: Foundation.URL, session: Foundation.URLSession = .shared, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache) async throws -> SovendusSDK.DotLottieFile
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @discardableResult
+  public static func loadedFrom(url: Foundation.URL, session: Foundation.URLSession = .shared, dotLottieCache: (any SovendusSDK.DotLottieCacheProvider)? = DotLottieCache.sharedCache, handleResult: @escaping (Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>) -> Swift.Void) -> Foundation.URLSessionDataTask?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func loadedFrom(data: Foundation.Data, filename: Swift.String, dispatchQueue: Dispatch.DispatchQueue = .dotLottie, handleResult: @escaping (Swift.Result<SovendusSDK.DotLottieFile, any Swift.Error>) -> Swift.Void)
+  #endif
+  public static func loadedFrom(data: Foundation.Data, filename: Swift.String, dispatchQueue: Dispatch.DispatchQueue = .dotLottie) async throws -> SovendusSDK.DotLottieFile
+}
+extension Dispatch.DispatchQueue {
+  public static let dotLottie: Dispatch.DispatchQueue
+}
+public struct AnimationKeypath : Swift.Hashable, Swift.ExpressibleByStringLiteral {
+  public init(keypath: Swift.String)
+  public init(stringLiteral: Swift.String)
+  public init(keys: [Swift.String])
+  public var keys: [Swift.String] {
+    get
+  }
+  public var string: Swift.String {
+    get
+  }
+  public static func == (a: SovendusSDK.AnimationKeypath, b: SovendusSDK.AnimationKeypath) -> Swift.Bool
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.String
+  public typealias StringLiteralType = Swift.String
+  public typealias UnicodeScalarLiteralType = Swift.String
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol AnyValueProvider {
+  var valueType: any Any.Type { get }
+  var typeErasedStorage: SovendusSDK.AnyValueProviderStorage { get }
+  func hasUpdate(frame: SovendusSDK.AnimationFrameTime) -> Swift.Bool
+}
+extension SovendusSDK.AnyValueProvider {
+  public func value(frame: SovendusSDK.AnimationFrameTime) -> Any
+}
+public enum ValueProviderStorage<T> where T : SovendusSDK.AnyInterpolatable {
+  case singleValue(T)
+  case keyframes([SovendusSDK.Keyframe<T>])
+  case closure((SovendusSDK.AnimationFrameTime) -> T)
+}
+public enum AnyValueProviderStorage {
+  case singleValue(Any)
+  case keyframes([SovendusSDK.Keyframe<Any>], interpolate: (SovendusSDK.AnimationFrameTime) -> Any)
+  case closure((SovendusSDK.AnimationFrameTime) -> Any)
+}
+final public class ColorValueProvider {
+  public init(block: @escaping SovendusSDK.ColorValueProvider.ColorValueBlock)
+  public init(_ color: SovendusSDK.LottieColor)
+  public init(_ keyframes: [SovendusSDK.Keyframe<SovendusSDK.LottieColor>])
+  public typealias ColorValueBlock = (CoreFoundation.CGFloat) -> SovendusSDK.LottieColor
+  final public var color: SovendusSDK.LottieColor {
+    get
+    set
+  }
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public var storage: SovendusSDK.ValueProviderStorage<SovendusSDK.LottieColor> {
+    get
+  }
+  final public func hasUpdate(frame _: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension SovendusSDK.ColorValueProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.ColorValueProvider, rhs: SovendusSDK.ColorValueProvider) -> Swift.Bool
+}
+final public class FloatValueProvider {
+  public init(block: @escaping SovendusSDK.FloatValueProvider.CGFloatValueBlock)
+  public init(_ float: CoreFoundation.CGFloat)
+  public typealias CGFloatValueBlock = (CoreFoundation.CGFloat) -> CoreFoundation.CGFloat
+  final public var float: CoreFoundation.CGFloat {
+    get
+    set
+  }
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public var storage: SovendusSDK.ValueProviderStorage<SovendusSDK.LottieVector1D> {
+    get
+  }
+  final public func hasUpdate(frame _: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension SovendusSDK.FloatValueProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.FloatValueProvider, rhs: SovendusSDK.FloatValueProvider) -> Swift.Bool
+}
+final public class GradientValueProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(block: @escaping SovendusSDK.GradientValueProvider.ColorsValueBlock, locations: SovendusSDK.GradientValueProvider.ColorLocationsBlock? = nil)
+  #endif
+  public init(_ colors: [SovendusSDK.LottieColor], locations: [Swift.Double] = [])
+  public typealias ColorsValueBlock = (CoreFoundation.CGFloat) -> [SovendusSDK.LottieColor]
+  public typealias ColorLocationsBlock = (CoreFoundation.CGFloat) -> [Swift.Double]
+  final public var colors: [SovendusSDK.LottieColor] {
+    get
+    set
+  }
+  final public var locations: [Swift.Double] {
+    get
+    set
+  }
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public var storage: SovendusSDK.ValueProviderStorage<[Swift.Double]> {
+    get
+  }
+  final public func hasUpdate(frame _: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension SovendusSDK.GradientValueProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.GradientValueProvider, rhs: SovendusSDK.GradientValueProvider) -> Swift.Bool
+}
+final public class PointValueProvider {
+  public init(block: @escaping SovendusSDK.PointValueProvider.PointValueBlock)
+  public init(_ point: CoreFoundation.CGPoint)
+  public typealias PointValueBlock = (CoreFoundation.CGFloat) -> CoreFoundation.CGPoint
+  final public var point: CoreFoundation.CGPoint {
+    get
+    set
+  }
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public var storage: SovendusSDK.ValueProviderStorage<SovendusSDK.LottieVector3D> {
+    get
+  }
+  final public func hasUpdate(frame _: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension SovendusSDK.PointValueProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.PointValueProvider, rhs: SovendusSDK.PointValueProvider) -> Swift.Bool
+}
+final public class SizeValueProvider {
+  public init(block: @escaping SovendusSDK.SizeValueProvider.SizeValueBlock)
+  public init(_ size: CoreFoundation.CGSize)
+  public typealias SizeValueBlock = (CoreFoundation.CGFloat) -> CoreFoundation.CGSize
+  final public var size: CoreFoundation.CGSize {
+    get
+    set
+  }
+  final public var valueType: any Any.Type {
+    get
+  }
+  final public var storage: SovendusSDK.ValueProviderStorage<SovendusSDK.LottieVector3D> {
+    get
+  }
+  final public func hasUpdate(frame _: CoreFoundation.CGFloat) -> Swift.Bool
+  @objc deinit
+}
+extension SovendusSDK.SizeValueProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.SizeValueProvider, rhs: SovendusSDK.SizeValueProvider) -> Swift.Bool
+}
+public protocol AnimationFontProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func fontFor(family: Swift.String, size: CoreFoundation.CGFloat) -> CoreText.CTFont?
+  #endif
+}
+final public class DefaultFontProvider : SovendusSDK.AnimationFontProvider {
+  public init()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func fontFor(family: Swift.String, size: CoreFoundation.CGFloat) -> CoreText.CTFont?
+  #endif
+  @objc deinit
+}
+extension SovendusSDK.DefaultFontProvider : Swift.Equatable {
+  public static func == (_: SovendusSDK.DefaultFontProvider, _: SovendusSDK.DefaultFontProvider) -> Swift.Bool
+}
+public protocol AnimationImageProvider {
+  var cacheEligible: Swift.Bool { get }
+  #if compiler(>=5.3) && $NonescapableTypes
+  func imageForAsset(asset: SovendusSDK.ImageAsset) -> CoreGraphics.CGImage?
+  #endif
+  func contentsGravity(for asset: SovendusSDK.ImageAsset) -> QuartzCore.CALayerContentsGravity
+}
+extension SovendusSDK.AnimationImageProvider {
+  public var cacheEligible: Swift.Bool {
+    get
+  }
+  public func contentsGravity(for _: SovendusSDK.ImageAsset) -> QuartzCore.CALayerContentsGravity
+}
+public protocol Interpolatable : SovendusSDK.AnyInterpolatable {
+  func interpolate(to: Self, amount: CoreFoundation.CGFloat) -> Self
+}
+public protocol SpatialInterpolatable : SovendusSDK.AnyInterpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func interpolate(to: Self, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> Self
+  #endif
+}
+public protocol AnyInterpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func _interpolate(to: Self, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> Self
+  #endif
+}
+extension SovendusSDK.Interpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func _interpolate(to: Self, amount: CoreFoundation.CGFloat, spatialOutTangent _: CoreFoundation.CGPoint?, spatialInTangent _: CoreFoundation.CGPoint?) -> Self
+  #endif
+}
+extension SovendusSDK.SpatialInterpolatable {
+  public func interpolate(to: Self, amount: CoreFoundation.CGFloat) -> Self
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func _interpolate(to: Self, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> Self
+  #endif
+}
+extension Swift.Double : SovendusSDK.Interpolatable {
+}
+extension CoreFoundation.CGFloat : SovendusSDK.Interpolatable {
+}
+extension Swift.Float : SovendusSDK.Interpolatable {
+}
+extension SovendusSDK.Interpolatable where Self : Swift.BinaryFloatingPoint {
+  public func interpolate(to: Self, amount: CoreFoundation.CGFloat) -> Self
+}
+extension CoreFoundation.CGRect : SovendusSDK.Interpolatable {
+  public func interpolate(to: CoreFoundation.CGRect, amount: CoreFoundation.CGFloat) -> CoreFoundation.CGRect
+}
+extension CoreFoundation.CGSize : SovendusSDK.Interpolatable {
+  public func interpolate(to: CoreFoundation.CGSize, amount: CoreFoundation.CGFloat) -> CoreFoundation.CGSize
+}
+extension CoreFoundation.CGPoint : SovendusSDK.SpatialInterpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func interpolate(to: CoreFoundation.CGPoint, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> CoreFoundation.CGPoint
+  #endif
+}
+extension SovendusSDK.LottieColor : SovendusSDK.Interpolatable {
+  public func interpolate(to: SovendusSDK.LottieColor, amount: CoreFoundation.CGFloat) -> SovendusSDK.LottieColor
+}
+extension SovendusSDK.LottieVector1D : SovendusSDK.Interpolatable {
+  public func interpolate(to: SovendusSDK.LottieVector1D, amount: CoreFoundation.CGFloat) -> SovendusSDK.LottieVector1D
+}
+extension SovendusSDK.LottieVector2D : SovendusSDK.SpatialInterpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func interpolate(to: SovendusSDK.LottieVector2D, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> SovendusSDK.LottieVector2D
+  #endif
+}
+extension SovendusSDK.LottieVector3D : SovendusSDK.SpatialInterpolatable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func interpolate(to: SovendusSDK.LottieVector3D, amount: CoreFoundation.CGFloat, spatialOutTangent: CoreFoundation.CGPoint?, spatialInTangent: CoreFoundation.CGPoint?) -> SovendusSDK.LottieVector3D
+  #endif
+}
+extension Swift.Array : SovendusSDK.Interpolatable, SovendusSDK.AnyInterpolatable where Element : SovendusSDK.Interpolatable {
+  public func interpolate(to: [Element], amount: CoreFoundation.CGFloat) -> [Element]
+}
+#if compiler(>=5.3) && $NonescapableTypes
+extension Swift.Optional : SovendusSDK.Interpolatable, SovendusSDK.AnyInterpolatable where Wrapped : SovendusSDK.Interpolatable {
+  public func interpolate(to: Wrapped?, amount: CoreFoundation.CGFloat) -> Wrapped?
+}
+#endif
+final public class Keyframe<T> {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(_ value: T, spatialInTangent: SovendusSDK.LottieVector3D? = nil, spatialOutTangent: SovendusSDK.LottieVector3D? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(value: T, time: SovendusSDK.AnimationFrameTime, isHold: Swift.Bool = false, inTangent: SovendusSDK.LottieVector2D? = nil, outTangent: SovendusSDK.LottieVector2D? = nil, spatialInTangent: SovendusSDK.LottieVector3D? = nil, spatialOutTangent: SovendusSDK.LottieVector3D? = nil)
+  #endif
+  final public let value: T
+  final public let time: SovendusSDK.AnimationFrameTime
+  final public let isHold: Swift.Bool
+  final public let inTangent: SovendusSDK.LottieVector2D?
+  final public let outTangent: SovendusSDK.LottieVector2D?
+  final public let spatialInTangent: SovendusSDK.LottieVector3D?
+  final public let spatialOutTangent: SovendusSDK.LottieVector3D?
+  @objc deinit
+}
+extension SovendusSDK.Keyframe : Swift.Equatable where T : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.Keyframe<T>, rhs: SovendusSDK.Keyframe<T>) -> Swift.Bool
+}
+extension SovendusSDK.Keyframe : Swift.Hashable where T : Swift.Hashable {
+  final public func hash(into hasher: inout Swift.Hasher)
+  final public var hashValue: Swift.Int {
+    get
+  }
+}
+extension SovendusSDK.Keyframe : Swift.Sendable where T : Swift.Sendable {
+}
+final public class LottieLogger {
+  public init(assert: @escaping SovendusSDK.LottieLogger.Assert = { condition, message, file, line in
+       
+       
+       
+      Swift.assert(condition(), message(), file: file, line: line)
+    }, assertionFailure: @escaping SovendusSDK.LottieLogger.AssertionFailure = { message, file, line in
+       
+       
+       
+       
+      Swift.assertionFailure(message(), file: file, line: line)
+    }, warn: @escaping SovendusSDK.LottieLogger.Warn = { message, _, _ in
+    }, info: @escaping SovendusSDK.LottieLogger.Info = { message in
+    })
+  public typealias Assert = (_ condition: @autoclosure () -> Swift.Bool, _ message: @autoclosure () -> Swift.String, _ fileID: Swift.StaticString, _ line: Swift.UInt) -> Swift.Void
+  public typealias AssertionFailure = (_ message: @autoclosure () -> Swift.String, _ fileID: Swift.StaticString, _ line: Swift.UInt) -> Swift.Void
+  public typealias Warn = (_ message: @autoclosure () -> Swift.String, _ fileID: Swift.StaticString, _ line: Swift.UInt) -> Swift.Void
+  public typealias Info = (_ message: @autoclosure () -> Swift.String) -> Swift.Void
+  public static var shared: SovendusSDK.LottieLogger
+  final public func assert(_ condition: @autoclosure () -> Swift.Bool, _ message: @autoclosure () -> Swift.String = String(), fileID: Swift.StaticString = #fileID, line: Swift.UInt = #line)
+  final public func assertionFailure(_ message: @autoclosure () -> Swift.String = String(), fileID: Swift.StaticString = #fileID, line: Swift.UInt = #line)
+  final public func warn(_ message: @autoclosure () -> Swift.String = String(), fileID: Swift.StaticString = #fileID, line: Swift.UInt = #line)
+  final public func info(_ message: @autoclosure () -> Swift.String = String())
+  @objc deinit
+}
+extension SovendusSDK.LottieLogger {
+  public static var printToConsole: SovendusSDK.LottieLogger {
+    get
+  }
+}
+public typealias AnimationFrameTime = CoreFoundation.CGFloat
+public typealias AnimationProgressTime = CoreFoundation.CGFloat
+public enum ColorFormatDenominator : Swift.Hashable {
+  case One
+  case OneHundred
+  case TwoFiftyFive
+  public static func == (a: SovendusSDK.ColorFormatDenominator, b: SovendusSDK.ColorFormatDenominator) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LottieColor : Swift.Hashable {
+  public var r: Swift.Double
+  public var g: Swift.Double
+  public var b: Swift.Double
+  public var a: Swift.Double
+  public init(r: Swift.Double, g: Swift.Double, b: Swift.Double, a: Swift.Double, denominator: SovendusSDK.ColorFormatDenominator = .One)
+  public static func == (a: SovendusSDK.LottieColor, b: SovendusSDK.LottieColor) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LottieVector1D : Swift.Hashable, Swift.Sendable {
+  public init(_ value: Swift.Double)
+  public let value: Swift.Double
+  public static func == (a: SovendusSDK.LottieVector1D, b: SovendusSDK.LottieVector1D) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct LottieVector3D : Swift.Hashable, Swift.Sendable {
+  public let x: Swift.Double
+  public let y: Swift.Double
+  public let z: Swift.Double
+  public init(x: Swift.Double, y: Swift.Double, z: Swift.Double)
+  public static func == (a: SovendusSDK.LottieVector3D, b: SovendusSDK.LottieVector3D) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol AnimationKeypathTextProvider : AnyObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func text(for keypath: SovendusSDK.AnimationKeypath, sourceText: Swift.String) -> Swift.String?
+  #endif
+}
+@available(*, deprecated, message: "`AnimationKeypathTextProvider` has been deprecated and renamed to `LegacyAnimationTextProvider`. Instead, conform to `AnimationKeypathTextProvider` instead or conform to `LegacyAnimationTextProvider` explicitly.")
+public typealias AnimationTextProvider = SovendusSDK.LegacyAnimationTextProvider
+public protocol LegacyAnimationTextProvider : SovendusSDK.AnimationKeypathTextProvider {
+  func textFor(keypathName: Swift.String, sourceText: Swift.String) -> Swift.String
+}
+extension SovendusSDK.LegacyAnimationTextProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func text(for _: SovendusSDK.AnimationKeypath, sourceText _: Swift.String) -> Swift.String?
+  #endif
+}
+public protocol TextContentsScaleProvider : SovendusSDK.AnimationKeypathTextProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  func contentsScale(for keypath: SovendusSDK.AnimationKeypath) -> CoreFoundation.CGFloat?
+  #endif
+}
+final public class DictionaryTextProvider : SovendusSDK.AnimationKeypathTextProvider, SovendusSDK.LegacyAnimationTextProvider {
+  public init(_ values: [Swift.String : Swift.String])
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func text(for keypath: SovendusSDK.AnimationKeypath, sourceText: Swift.String) -> Swift.String?
+  #endif
+  final public func textFor(keypathName: Swift.String, sourceText: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension SovendusSDK.DictionaryTextProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.DictionaryTextProvider, rhs: SovendusSDK.DictionaryTextProvider) -> Swift.Bool
+}
+final public class DefaultTextProvider : SovendusSDK.AnimationKeypathTextProvider, SovendusSDK.LegacyAnimationTextProvider {
+  public init()
+  final public func textFor(keypathName _: Swift.String, sourceText: Swift.String) -> Swift.String
+  final public func text(for _: SovendusSDK.AnimationKeypath, sourceText: Swift.String) -> Swift.String
+  @objc deinit
+}
+extension SovendusSDK.DefaultTextProvider : Swift.Equatable {
+  public static func == (_: SovendusSDK.DefaultTextProvider, _: SovendusSDK.DefaultTextProvider) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency final public class AnimationSubview : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+public class BundleImageProvider : SovendusSDK.AnimationImageProvider {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(bundle: Foundation.Bundle, searchPath: Swift.String?, contentsGravity: QuartzCore.CALayerContentsGravity = .resize)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func imageForAsset(asset: SovendusSDK.ImageAsset) -> CoreGraphics.CGImage?
+  #endif
+  public func contentsGravity(for _: SovendusSDK.ImageAsset) -> QuartzCore.CALayerContentsGravity
+  @objc deinit
+}
+extension SovendusSDK.BundleImageProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.BundleImageProvider, rhs: SovendusSDK.BundleImageProvider) -> Swift.Bool
+}
+@objc final public class CompatibleAnimationKeypath : ObjectiveC.NSObject {
+  @objc public init(keypath: Swift.String)
+  @objc public init(keys: [Swift.String])
+  final public let animationKeypath: SovendusSDK.AnimationKeypath
+  @objc deinit
+}
+@objc final public class CompatibleAnimation : ObjectiveC.NSObject {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public init(name: Swift.String, subdirectory: Swift.String? = nil, bundle: Foundation.Bundle = Bundle.main)
+  #endif
+  @objc deinit
+}
+@objc public enum CompatibleRenderingEngineOption : Swift.Int {
+  case shared
+  case defaultEngine
+  case automatic
+  case mainThread
+  case coreAnimation
+  public static func generateLottieConfiguration(_ configuration: SovendusSDK.CompatibleRenderingEngineOption) -> SovendusSDK.LottieConfiguration
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum CompatibleBackgroundBehavior : Swift.Int {
+  case stop
+  case pause
+  case pauseAndRestore
+  case forceFinish
+  case continuePlaying
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.Int)
+  #endif
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor @preconcurrency final public class CompatibleAnimationView : UIKit.UIView {
+  @objc @_Concurrency.MainActor @preconcurrency convenience public init(compatibleAnimation: SovendusSDK.CompatibleAnimation)
+  @objc @_Concurrency.MainActor @preconcurrency public init(compatibleAnimation: SovendusSDK.CompatibleAnimation, compatibleRenderingEngineOption: SovendusSDK.CompatibleRenderingEngineOption)
+  @objc @_Concurrency.MainActor @preconcurrency convenience public init(url: Foundation.URL)
+  @objc @_Concurrency.MainActor @preconcurrency public init(url: Foundation.URL, compatibleRenderingEngineOption: SovendusSDK.CompatibleRenderingEngineOption)
+  @objc @_Concurrency.MainActor @preconcurrency convenience public init(data: Foundation.Data)
+  @objc @_Concurrency.MainActor @preconcurrency public init(data: Foundation.Data, compatibleRenderingEngineOption: SovendusSDK.CompatibleRenderingEngineOption)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @objc @_Concurrency.MainActor @preconcurrency final public var compatibleAnimation: SovendusSDK.CompatibleAnimation? {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var loopAnimationCount: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var compatibleDictionaryTextProvider: SovendusSDK.CompatibleDictionaryTextProvider? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override final public var contentMode: UIKit.UIView.ContentMode {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var shouldRasterizeWhenIdle: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var currentProgress: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var duration: CoreFoundation.CGFloat {
+    @objc get
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var currentTime: Foundation.TimeInterval {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var currentFrame: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var realtimeAnimationFrame: CoreFoundation.CGFloat {
+    @objc get
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var realtimeAnimationProgress: CoreFoundation.CGFloat {
+    @objc get
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var animationSpeed: CoreFoundation.CGFloat {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var respectAnimationFrameRate: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var isAnimationPlaying: Swift.Bool {
+    @objc get
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public var backgroundMode: SovendusSDK.CompatibleBackgroundBehavior {
+    @objc get
+    @objc set
+  }
+  @objc @_Concurrency.MainActor @preconcurrency final public func play()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func play(completion: ((Swift.Bool) -> Swift.Void)?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func play(fromProgress: CoreFoundation.CGFloat, toProgress: CoreFoundation.CGFloat, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func play(fromFrame: CoreFoundation.CGFloat, toFrame: CoreFoundation.CGFloat, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func play(fromMarker: Swift.String, toMarker: Swift.String, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func play(marker: Swift.String, completion: ((Swift.Bool) -> Swift.Void)? = nil)
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func stop()
+  @objc @_Concurrency.MainActor @preconcurrency final public func pause()
+  @objc @_Concurrency.MainActor @preconcurrency final public func reloadImages()
+  @objc @_Concurrency.MainActor @preconcurrency final public func forceDisplayUpdate()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func getValue(for keypath: SovendusSDK.CompatibleAnimationKeypath, atFrame: CoreFoundation.CGFloat) -> Any?
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func logHierarchyKeypaths()
+  @objc @_Concurrency.MainActor @preconcurrency final public func setColorValue(_ color: UIKit.UIColor, forKeypath keypath: SovendusSDK.CompatibleAnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func getColorValue(for keypath: SovendusSDK.CompatibleAnimationKeypath, atFrame: CoreFoundation.CGFloat) -> UIKit.UIColor?
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func addSubview(_ subview: SovendusSDK.AnimationSubview, forLayerAt keypath: SovendusSDK.CompatibleAnimationKeypath)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func convert(rect: CoreFoundation.CGRect, toLayerAt keypath: SovendusSDK.CompatibleAnimationKeypath?) -> CoreFoundation.CGRect
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency final public func convert(point: CoreFoundation.CGPoint, toLayerAt keypath: SovendusSDK.CompatibleAnimationKeypath?) -> CoreFoundation.CGPoint
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency final public func progressTime(forMarker named: Swift.String) -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency final public func frameTime(forMarker named: Swift.String) -> CoreFoundation.CGFloat
+  @objc @_Concurrency.MainActor @preconcurrency final public func durationFrameTime(forMarker named: Swift.String) -> CoreFoundation.CGFloat
+  @objc deinit
+}
+@objc final public class CompatibleDictionaryTextProvider : ObjectiveC.NSObject {
+  @objc public init(values: [Swift.String : Swift.String])
+  @objc deinit
+}
+public class FilepathImageProvider : SovendusSDK.AnimationImageProvider {
+  public init(filepath: Swift.String, contentsGravity: QuartzCore.CALayerContentsGravity = .resize)
+  public init(filepath: Foundation.URL, contentsGravity: QuartzCore.CALayerContentsGravity = .resize)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public func imageForAsset(asset: SovendusSDK.ImageAsset) -> CoreGraphics.CGImage?
+  #endif
+  public func contentsGravity(for _: SovendusSDK.ImageAsset) -> QuartzCore.CALayerContentsGravity
+  @objc deinit
+}
+extension SovendusSDK.FilepathImageProvider : Swift.Equatable {
+  public static func == (lhs: SovendusSDK.FilepathImageProvider, rhs: SovendusSDK.FilepathImageProvider) -> Swift.Bool
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class LottieAnimationViewBase : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public var contentMode: UIKit.UIView.ContentMode {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func didMoveToWindow()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+extension UIKit.UIColor {
+  public var lottieColorValue: SovendusSDK.LottieColor {
+    get
+  }
+}
+@_Concurrency.MainActor @preconcurrency public struct VoucherBenefitsView : SwiftUICore.View {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public init(config: SovendusSDK.SovendusConfig, onStateChanged: SovendusSDK.OnSovendusStateChanged? = nil)
+  #endif
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s11SovendusSDK19VoucherBenefitsViewV4bodyQrvp", 0) __
+}
+extension SovendusSDK.ErrorType : Swift.Equatable {}
+extension SovendusSDK.ErrorType : Swift.Hashable {}
+extension SovendusSDK.ErrorType : Swift.RawRepresentable {}
+extension SovendusSDK.ConsumerData.Salutation : Swift.Equatable {}
+extension SovendusSDK.ConsumerData.Salutation : Swift.Hashable {}
+extension SovendusSDK.ConsumerData.Salutation : Swift.RawRepresentable {}
+extension SovendusSDK.LayerType : Swift.Equatable {}
+extension SovendusSDK.LayerType : Swift.Hashable {}
+extension SovendusSDK.LayerType : Swift.RawRepresentable {}
+extension SovendusSDK.MatteType : Swift.Equatable {}
+extension SovendusSDK.MatteType : Swift.Hashable {}
+extension SovendusSDK.MatteType : Swift.RawRepresentable {}
+extension SovendusSDK.BlendMode : Swift.Equatable {}
+extension SovendusSDK.BlendMode : Swift.Hashable {}
+extension SovendusSDK.BlendMode : Swift.RawRepresentable {}
+extension SovendusSDK.CoordinateSpace : Swift.Equatable {}
+extension SovendusSDK.CoordinateSpace : Swift.Hashable {}
+extension SovendusSDK.CoordinateSpace : Swift.RawRepresentable {}
+extension SovendusSDK.LottieBackgroundBehavior : Swift.Equatable {}
+extension SovendusSDK.LottieBackgroundBehavior : Swift.Hashable {}
+extension SovendusSDK.LottieView : SwiftUICore.View {}
+extension SovendusSDK.LottieView : Swift.Sendable {}
+extension SovendusSDK.AnimatedSwitch.CancelBehavior : Swift.Equatable {}
+extension SovendusSDK.AnimatedSwitch.CancelBehavior : Swift.Hashable {}
+extension SovendusSDK.LottieButton : SwiftUICore.View {}
+extension SovendusSDK.LottieButton : Swift.Sendable {}
+extension SovendusSDK.LottieSwitch : SwiftUICore.View {}
+extension SovendusSDK.LottieSwitch : Swift.Sendable {}
+extension SovendusSDK.ColorValueProvider : SovendusSDK.AnyValueProvider {}
+extension SovendusSDK.FloatValueProvider : SovendusSDK.AnyValueProvider {}
+extension SovendusSDK.GradientValueProvider : SovendusSDK.AnyValueProvider {}
+extension SovendusSDK.PointValueProvider : SovendusSDK.AnyValueProvider {}
+extension SovendusSDK.SizeValueProvider : SovendusSDK.AnyValueProvider {}
+extension SovendusSDK.CompatibleRenderingEngineOption : Swift.Equatable {}
+extension SovendusSDK.CompatibleRenderingEngineOption : Swift.Hashable {}
+extension SovendusSDK.CompatibleRenderingEngineOption : Swift.RawRepresentable {}
+extension SovendusSDK.CompatibleBackgroundBehavior : Swift.Equatable {}
+extension SovendusSDK.CompatibleBackgroundBehavior : Swift.Hashable {}
+extension SovendusSDK.CompatibleBackgroundBehavior : Swift.RawRepresentable {}
+extension SovendusSDK.VoucherBenefitsView : Swift.Sendable {}
