@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/SovendusSDK-Swift.h</key>
 		<data>
-		BC4i0cbRuZTOqv0AogGoMKxOY68=
+		G7Nswi6UB0+VLIMhooT1JSio+RY=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		eStNKvH5w8hpLI+CqprD4NvivIE=
+		xh4caSy4sQR1faSK3otvCKECcqI=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -18,19 +18,19 @@
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		5D5fGTibHLBJ0KzADiGdaREp2q0=
+		zY+5xB39zNmqKn7ZVnBxFTzosyU=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		AYNedD5GM8MDoXW4gn51HizrJdc=
+		LY7L96VY4erG1l7sU/0X2TQUK24=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		5D5fGTibHLBJ0KzADiGdaREp2q0=
+		zY+5xB39zNmqKn7ZVnBxFTzosyU=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		20PtkPpiiv4JRtSD6T4QJUFDPdk=
+		RiL/QR/VbVMm8e/HaiFMp8SuOLg=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		q2Qi5Kp2YPvhnlC2UqexlkYkI6o=
+		AS8AclnDHyGmzoNt7LN8MTreqmM=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		K59PambDJ6OQ1RULHT4TNXmvt94=
+		+7Zo7II0idNOzATsTzHGxBKAD7I=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		q2Qi5Kp2YPvhnlC2UqexlkYkI6o=
+		AS8AclnDHyGmzoNt7LN8MTreqmM=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		MLxIky5jAmORthhpZ7GvuLTOsLA=
+		ie5K4GysUECFckK+g+T5XYkwRXM=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -59,7 +59,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			k9pZTeBbW2gntP7ZfjyweA+6llOoNAj2Kx9f7NK6IiU=
+			VmmblJNVdkuyR1YiO0QStHzPOLaMYkEBhrzUQ/rfrD0=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -73,28 +73,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			g/bBHBUkxx/BJW6HLNwloWAzS5eHqcXgjG0uhSjvZZ0=
+			2jRx0wC4N05I83DcyT5XMaKVo1Bg6eSiqu8L6sR9Hsg=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uc4FWM1kXITgObB+bL8WcdTjwiQwbyt8Rv+oxrJWuUE=
+			vqO9vP/E6z55b5Rcl60PIZkPrjxEROXUfwkzmxiDko0=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g/bBHBUkxx/BJW6HLNwloWAzS5eHqcXgjG0uhSjvZZ0=
+			2jRx0wC4N05I83DcyT5XMaKVo1Bg6eSiqu8L6sR9Hsg=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FP2AIJeUDBt8PrrRWsHxpgs+bBq6f7DdUKifzrJI15Y=
+			BuKRWQN4eaL0ZIAfsRGojV0ZpvkxFgDyzsGkuGWE8iQ=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -108,28 +108,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9UbW19u8NcULWzywXGvANpiEr1a6DoSIppuwKstLxSc=
+			RFVScSGxm49lzJi4y5IYMfas69jmDG/Dr+JqoNZY5Ro=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7wRuzxTN6MmtmJCw8pFwtx2EYvoKvWtgPOdLgCThCRU=
+			bHrPp7msMh11zPfGRVgBhgPlyIuPkxLAkOMtDcE7krg=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9UbW19u8NcULWzywXGvANpiEr1a6DoSIppuwKstLxSc=
+			RFVScSGxm49lzJi4y5IYMfas69jmDG/Dr+JqoNZY5Ro=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/dKefzdaKRhtBN+QsOvTJHhpkyRauAbjJWiFMp7u1ks=
+			3FvOAZ392s1iSIAPRzSdBZnkHHmCk5muDIqBTQSn7Dw=
 			</data>
 		</dict>
 	</dict>
