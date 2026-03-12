@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
 // swift-module-flags: -target x86_64-apple-ios16.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name SovendusSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import Combine
 import Compression
 import CoreFoundation
@@ -76,8 +76,9 @@ public enum SovendusState {
 public typealias OnSovendusStateChanged = (SovendusSDK.SovendusState) -> Swift.Void
 public typealias OnSovendusLinkOpened = (Foundation.URL) -> Swift.Void
 public struct SovendusConfig {
+  public let customFont: UIKit.UIFont?
   #if compiler(>=5.3) && $NonescapableTypes
-  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil)
+  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil, customFont: UIKit.UIFont? = nil)
   #endif
 }
 @_hasMissingDesignatedInitializers public class Asset : Swift.Codable {
