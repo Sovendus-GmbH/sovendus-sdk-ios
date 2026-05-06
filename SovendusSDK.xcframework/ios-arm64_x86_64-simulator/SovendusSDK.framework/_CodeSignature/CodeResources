@@ -18,19 +18,19 @@
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		6arivYyAwjztOKMHu4LrcS5Mf88=
+		BdAerg2pYFrn2oDl8ldklqiW29g=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		GLrx4Y3lXkyxJugXR+6uP6bYkVc=
+		ibT4rPCpaZbpSQ5D+mZGbvk6d7k=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		6arivYyAwjztOKMHu4LrcS5Mf88=
+		BdAerg2pYFrn2oDl8ldklqiW29g=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		mAJKpC28fU2CX3I/mOwu2sIbzT8=
+		l0g+xXRqlJiIaEnFjlrOUMVs0r8=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		uK4J6bS57zrYHD/PpBync41ny7s=
+		edkAzjh9VvAlZTXKIesAffWmUx8=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		l+VCiyA+KvDlKTbdYwDtHeGyPD4=
+		IBz8IWTtNMOqeUCHNTePmx34GkE=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		uK4J6bS57zrYHD/PpBync41ny7s=
+		edkAzjh9VvAlZTXKIesAffWmUx8=
 		</data>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		ndMb2CkDtBNKZrAsIEQK87gg220=
+		BezVdXUREWlYTkzxYnL/xedvfFI=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -73,28 +73,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mvIDDAoCOlJnxPK84/ESX+eFow4cf7gZS1L5KTmcbzE=
+			dIvHBj2aDvopPm3fZTax2XLFY/f9jMQ6pvx4Zn3Eb48=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			7/TcbNJqv+RGGnOnWMZchDJGDfEMFcPtMeVLTNcgSpk=
+			dmWkqBvvYAOYDwSLcGxE/t3hR7IwEPs064lkpR6+G5A=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			mvIDDAoCOlJnxPK84/ESX+eFow4cf7gZS1L5KTmcbzE=
+			dIvHBj2aDvopPm3fZTax2XLFY/f9jMQ6pvx4Zn3Eb48=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CUmVDM/PHoZy/yBXdmE3rNBQ9JG52bqucHtHnd8m20M=
+			KI6jMp1CydP7Hmk/qrnBKH9aLU8oC1Y8DVlxSkVecGU=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
@@ -108,28 +108,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bLI2PufYzqJVCqyM0ZyovrwubW7RYcMFdWVZEQz4nvY=
+			p9Q3dnYRjLHMA1w2uj5vCR7uHnqfG7nC2f5k4Z4TK8A=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			8cEi8ktS8cDjqCM5AAdUFoTepBEaxrmG/CjIyaEgxw8=
+			ZcuqI1a4Q8/VpSg6DeO+D9UPnSfgovgmVWDgl7oUkPI=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bLI2PufYzqJVCqyM0ZyovrwubW7RYcMFdWVZEQz4nvY=
+			p9Q3dnYRjLHMA1w2uj5vCR7uHnqfG7nC2f5k4Z4TK8A=
 			</data>
 		</dict>
 		<key>Modules/SovendusSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xtlmhxhJ9lzENfNPfZUWtO1aRdjqHCPGA+4ouuinyMw=
+			dbC3emIQKCCyQecLRlesrCR2Ha4t+rPy9d3NyFMb7+8=
 			</data>
 		</dict>
 	</dict>

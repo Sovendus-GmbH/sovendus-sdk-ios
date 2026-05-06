@@ -66,8 +66,9 @@ public enum SovendusState {
 public typealias OnSovendusStateChanged = (SovendusSDK.SovendusState) -> Swift.Void
 public typealias OnSovendusLinkOpened = (Foundation.URL) -> Swift.Void
 public struct SovendusConfig {
-  public let customFont: UIKit.UIFont?
-  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil, customFont: UIKit.UIFont? = nil)
+  public let customFontFamily: Swift.String?
+  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil, customFontFamily: Swift.String? = nil)
+  public init(trafficSourceNumber: Swift.Int, trafficMediumNumber: Swift.Int, consumerData: SovendusSDK.ConsumerData?, orderData: SovendusSDK.OrderData?, sandbox: Swift.Bool = false, enableDebugLogs: Swift.Bool = false, onLinkOpened: SovendusSDK.OnSovendusLinkOpened? = nil, customFont: UIKit.UIFont?)
 }
 @_hasMissingDesignatedInitializers public class Asset : Swift.Codable {
   required public init(from decoder: any Swift.Decoder) throws
